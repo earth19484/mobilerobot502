@@ -1,8 +1,14 @@
 <?xml version="1.0"?>
 <robot name="earthfibo" xmlns:xacro="http://www.ros.org/wiki/xacro">
+<!--การสร้างหุ่นหลักๆ จะมี3 ส่วนประกอบหลักคือ 1.visual ถ้าเปรียบเทียบง่ายๆ visual คือ วิญญาณ 2.collision คือ กายหยาบ 3.inertial คือการขยับทำสิ่งต่างๆ
+การจะต้องมี3ส่วนประกอบ กรณีขาดไปอย่างใดอย่างหนึ่ง จะทำให้หุ่นเรา้เจอปัญหาได้ เช่น กรณีหุ่นชนสิ่งกีดขวาง ถ้าไม่มี collision มันจะทะลุผ่านไปเลย 
+การเขียน visual collision สามารถสร้างรูปทรงต่างๆได้ เช่น ทรงกลม สี่เหลี่ยม    
+สิ่งที่ขาดไม่ได้เลยในการทำหุ่นยนต์คือ joint  joint จะเป็นตัวเชื่อมส่วนประกอบต่างๆให้หุ่นสามารถเคลื่อนที่ได้ 
+สิ่งสำคัญในการออกแบบหุ่นคือ 
 
+ -->
 <link name="body">
-
+<!--สร้างโครงหุ่น-->
     <visual> 
           <geometry>
            <box size="0.25 0.16 0.10"/>
@@ -29,7 +35,7 @@
    
     </link>
 
-
+     <!--สร้างล้อซ้าย-->
      <link name="left_wheel">
        <visual>
          <geometry>
@@ -66,7 +72,7 @@
         <dynamics damping='0.3'/>
      </joint>
 
-
+    <!--สร้างล้อขวา-->
     <link name="right_wheel">
        <visual>
          <geometry>
@@ -102,41 +108,7 @@
         <dynamics damping='0.3'/>
      </joint>
      
-     
-     
-<!-->
-   <link name="fwheel_attach">
-       <visual>
-         <geometry>
-           <cylinder length="0.060" radius="0.023"/>
-         </geometry>
-         <origin rpy="0 0 0" xyz="0.13 0 0.08"/>
-         <material name="white">
-           <color rgba="1 1 1 1"/>
-         </material>
-       </visual>
-       
-        <collision name="collision">
-          <origin rpy="0 0 0" xyz="0.13 0 0.08"/>
-          <geometry>
-              <cylinder length="0.060" radius="0.023"/>
-          </geometry>
-        </collision>
-        
-        <inertial>
-     <origin xyz="0 0 0" rpy="0 0 0"/>
-     <mass value="1"/>
-     <inertia ixx="0.1"  ixy="0"  ixz="0" iyy="0.1" iyz="0" izz="0.1" />
-   </inertial>
-     </link>
-     
-     <joint name="base_to_fattach" type="continuous">
-       <parent link="body"/>
-       <child link="fwheel_attach"/>
-       <origin xyz="0 0 0" rpy="0 0 0"/>
-         <axis xyz="0 1 0"/>
-     </joint>
- <-->    
+     <!--สร้างล้อหน้า-->
      <link name="fwheel">
        <visual>
          <geometry>
@@ -169,7 +141,7 @@
 
 
 
-
+   <!--สร้างกล้อง-->
   <joint name="camera_joint" type="fixed">
     
     <origin xyz="0.105 0 0.1" rpy="0 0 0" />
@@ -253,6 +225,8 @@
     <child link="hokuyo_link"/>
   </joint>
 
+
+  <!--สร้างlidar sensor-->
   <!-- Hokuyo Laser -->
   <link name="hokuyo_link">
     <collision>
@@ -313,7 +287,7 @@
     </sensor>
   </gazebo>
   
-
+<!--plugin controller-->
 <gazebo>
   <plugin name="differential_drive_controller" filename="libgazebo_ros_diff_drive.so">
 

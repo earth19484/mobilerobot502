@@ -1,0 +1,2 @@
+earth_description
+-DCATKIN_DEVEL_PREFIX=/home/achita/catkin_ws/devel -DCMAKE_INSTALL_PREFIX=/home/achita/catkin_ws/install -G Unix Makefiles

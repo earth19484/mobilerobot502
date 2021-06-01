@@ -1,0 +1,8 @@
+prefix=/home/achita/catkin_ws/install
+
+Name: earth_description
+Description: Description of earth_description
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

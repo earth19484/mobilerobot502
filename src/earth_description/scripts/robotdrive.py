@@ -105,19 +105,19 @@ if __name__=="__main__":
         while(1):
             key = getKey(key_timeout)
 
-            if key == 'a':
+            if key == 'a':                    # กำหนดให้ ถ้า key == 'a' เลี้ยวซ้าย
                 speed = 0
                 turn = 0.25
-            elif key == 'w':
+            elif key == 'w':                  # กำหนดให้ ถ้า key == 'w' เดินหน้า
                 speed = 0.25
                 turn = 0
-            elif key == 's':
+            elif key == 's':                  # กำหนดให้ ถ้า key == 's' ถอยหลัง
                 speed = -0.25
                 turn = 0
-            elif key == 'd':
+            elif key == 'd':                  # กำหนดให้ ถ้า key == 'd' เลี้ยวขวา
                 speed = 0
                 turn = -0.25             
-            else:
+            else:                            # กำหนดให้ ถ้า กดปุ่มนอกจากนี้ให้หุ่นหยุดนิ่ง
                 speed = 0
                 turn = 0
             

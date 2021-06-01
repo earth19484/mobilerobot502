@@ -2,24 +2,18 @@
 
 <launch>
 
-<!-- เป็นการ Set parameter สำหรับตัว model หุ่นยนต์ โดยแปลงมาจากไฟล์ Xacro ของหุ่นที่เขียนไว้ -->
+
+<!-- ไฟล์ launch เป็นการดึงค่าจากส่วนต่างๆที่ได้เขียนเอาไว้ ไปใช้งาน ในที่นี้มี ไฟล์หุ่น(.xacro) ไฟล์บ้าน(.home) ไฟล์ควบคุมผ่านแป้นพิมพ์(.py) -->
 <param name="robot_description" 
 command="$(find xacro)/xacro $(find earth_description)/urdf/earthfibo.xacro" />
 
-<!-- Run node spawn_urdf บน package gazebo โดยเอา model จาก parameter robot_description ที่ set ไปมาแสดงใน gazebo -->
+<!--  set ให้แสดงใน gazebo -->
 <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model" output = "screen"
 args="-param robot_description -urdf -model v -x -0.5 -y -0.5 -z -0.5" />
 
 <node name="teleop_twist_keyboard" pkg="earth_description" type="robotdrive.py" />
-	<!-- Find Path package ของ gazebo เพื่อรันโปรแกรมเปล่าๆ -->
+	
     <include file="$(find gazebo_ros)/launch/empty_world.launch">
     <arg name="world_name" value="$(find earth_description)/world/home.world "/>
     </include>
-
-
-
-
-
-
-
   </launch>
